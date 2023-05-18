@@ -1,0 +1,348 @@
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<title>MIO</title>
+	<link href="css/bootstrap.css" rel="stylesheet" /> <!-- css -->
+	<script src="jquery-3.6.4.js" ></script> <!-- javascript -->
+	<script src="js/bootstrap.js" ></script>
+	<script src="js/bootstrap.bundle.js" ></script>
+
+	<script src="jquery.dataTables.min.js" ></script>
+	<script src="dataTables.bootstrap4.min.js" ></script>
+	<link href="dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="keywords">
+	<meta content="" name="description">
+
+</head>
+<body>
+	<div class="container">
+        <br><br><br>
+        <div class="row bg-danger">
+            <!--PRIMER CARD-->
+            <div class="card-header bg-info" style="width: 100%; height: 600px;">
+                <p><b>Gestión de Ingreso - Establecimiento comecial</b></p>
+                <div class="form-group">
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>TD: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <select CLASS="form-control" id="ciudad" onchange="obtenerciudad()">
+                                <option value="1">TI</option>
+                                <option value="2">CC</option>
+                                <option value="3">CE</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-right">
+                            <label>Documento: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" onkeypress="return validarSOLOnumeros(event)"  max="9999999999"  class="form-control" required/>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>Nombres: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="nombre" onkeypress="return validarSOLOletras(event)" type="text" maxlength="250" class="form-control text-uppercase" required/>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>Apellidos: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="apellido" onkeypress="return validarSOLOletras(event)" type="text" maxlength="250" class="form-control text-uppercase" required/>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>Cedula: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" onkeypress="return validarSOLOnumeros(event)" max="9999999999"  class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>Teléfono: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" onkeypress="return validarSOLOnumeros(event)"  max="9999999999"  class="form-control" required/>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>Dirección: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="direccion" onkeypress="return validarSOLOletras(event)" type="text" maxlength="250" class="form-control text-uppercase" required/>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>Fecha entrega: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="fecha" type="date" class="form-control" required/>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>Hora ingreso: </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="fecha" type="time" class="form-control" required/>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-4">
+                        <div class="col-md-3 text-left">
+                            <label>Motivo: </label>
+                        </div>
+                        <textarea></textarea>
+                        
+                    </div><br>
+                    <input class="btn btn-secondary" type="submit" value="Guardar"/>
+                    <button type="reset" class="btn btn-secondary">Limpiar</button>
+                    <!--SEGUNDO CARD-->
+                    <div class="card bg-white col-md-7" style="left: 40%; top: -493px; height: 540px;">
+                        
+                        <div class="row">
+                            <div class="row col-md-7">
+                                <div class="row col-md-5">
+                                    <input class="btn btn-secondary" type="submit" value="Guardar"/>
+
+                                </div>
+                                <div class="row col-md-5">
+                                    <button type="reset" class="btn btn-secondary">Limpiar</button>
+
+                                </div>
+                                <div class="row col-md-5">
+                                    <a href="#" class="btn btn-secondary" >LINK A LO Q SEA </a>
+
+                                </div>
+
+                            </div>
+                
+                        <table id="mesa" class="table-bordered  table-striped  table-hover">
+                    
+                                    <thead class="bg-warning">
+                                        <th>ID</th>
+                                        <th>TD</th>
+                                        <th>Documento</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Teléfono</th>
+                                        <th>Dirección</th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Motivo</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>CC</td>
+                                            <td>106988</td>
+                                            <td>CARLOS</td>
+                                            <td>PEREZ</td>
+                                            <td>312787</td>
+                                            <td>Avenida x</td>
+                                            <td>2018-01-20</td>
+                                            <td>10:50:00</td>
+                                            <td>Consulta</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>CE</td>
+                                            <td>10101</td>
+                                            <td>MARIA LUZ</td>
+                                            <td>GARCIA</td>
+                                            <td>55533</td>
+                                            <td>CALLE 1</td>
+                                            <td>2018-01-20</td>
+                                            <td>11:30:00</td>
+                                            <td>Visita</td>
+                                        </tr>
+                                    </tbody>
+                        </table>
+                    </div> 
+                    </div>
+
+                    
+        
+                </div>
+        
+            </div>
+            <!--SEGUNDO CARD-->
+            <!--<div class="card bg-dark col-md-7"><br><br><br><br>
+                
+                <div class="row">
+                    <div class="row col-md-7">
+                        <div class="row col-md-4">
+                            <input class="btn btn-secondary" type="submit" value="Guardar"/>
+
+                        </div>
+                        <div class="row col-md-4">
+                            <button type="reset" class="btn btn-secondary">Limpiar</button>
+
+                        </div>
+                        <div class="row col-md-4">
+                            <a href="#" class="btn btn-secondary" >LINK A LO Q SEA </a>
+
+                        </div>
+
+                    </div>
+          
+                 <table id="mesa" class="table-bordered  table-striped  table-hover">
+              
+                             <thead class="bg-warning">
+                                 <th>ID</th>
+                                 <th>TD</th>
+                                 <th>Documento</th>
+                                 <th>Nombres</th>
+                                 <th>Apellidos</th>
+                                 <th>Teléfono</th>
+                                 <th>Dirección</th>
+                                 <th>Fecha</th>
+                                 <th>Hora</th>
+                                 <th>Motivo</th>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td>1</td>
+                                     <td>CC</td>
+                                     <td>106988</td>
+                                     <td>CARLOS</td>
+                                     <td>PEREZ</td>
+                                     <td>312787</td>
+                                     <td>Avenida x</td>
+                                     <td>2018-01-20</td>
+                                     <td>10:50:00</td>
+                                     <td>Consulta</td>
+                                 </tr>
+                                 <tr>
+                                     <td>2</td>
+                                     <td>CE</td>
+                                     <td>10101</td>
+                                     <td>MARIA LUZ</td>
+                                     <td>GARCIA</td>
+                                     <td>55533</td>
+                                     <td>CALLE 1</td>
+                                     <td>2018-01-20</td>
+                                     <td>11:30:00</td>
+                                     <td>Visita</td>
+                                 </tr>
+                             </tbody>
+                 </table>
+             </div> 
+            </div-->
+        </div>
+    </div>
+
+
+
+
+<script>
+	function obtenerinput(){
+		var mensaje = "";
+		let mensaje2 = "";
+		// mensaje = document.getElementById("nombre").innerHTML;
+		mensaje2 = document.getElementById("nombre").value;
+		mensaje = $("#nombre").val();
+		mensaje = mensaje.toUpperCase();
+		alert(mensaje);
+	}
+    function obtenerinput(){
+		var mensaje = "";
+		let mensaje2 = "";
+		// mensaje = document.getElementById("nombre").innerHTML;
+		mensaje2 = document.getElementById("apellido").value;
+		mensaje = $("#apellido").val();
+		mensaje = mensaje.toUpperCase();
+		alert(mensaje);
+	}
+
+
+	function validarN(){
+		let nomb = $("#nombre").val();
+		var bandera = false;
+		if (nomb.indexOf("0")>-1) bandera =true;
+		else if (nomb.indexOf("1")>-1) bandera =true;
+		else if (nomb.indexOf("2")>-1) bandera =true;
+		else if (nomb.indexOf("3")>-1) bandera =true;
+		else if (nomb.indexOf("4")>-1) bandera =true;
+		else if (nomb.indexOf("5")>-1) bandera =true;
+		else if (nomb.indexOf("6")>-1) bandera =true;
+		else if (nomb.indexOf("7")>-1) bandera =true;
+		else if (nomb.indexOf("8")>-1) bandera =true;
+		else if (nomb.indexOf("9")>-1) bandera =true;
+		if (bandera){ //bandera==true
+			alert("No se permite numeros");
+			$("#nombre").val("");
+		}
+
+	}
+    function validarN(){
+		let nomb = $("#apellido").val();
+		var bandera = false;
+		if (nomb.indexOf("0")>-1) bandera =true;
+		else if (nomb.indexOf("1")>-1) bandera =true;
+		else if (nomb.indexOf("2")>-1) bandera =true;
+		else if (nomb.indexOf("3")>-1) bandera =true;
+		else if (nomb.indexOf("4")>-1) bandera =true;
+		else if (nomb.indexOf("5")>-1) bandera =true;
+		else if (nomb.indexOf("6")>-1) bandera =true;
+		else if (nomb.indexOf("7")>-1) bandera =true;
+		else if (nomb.indexOf("8")>-1) bandera =true;
+		else if (nomb.indexOf("9")>-1) bandera =true;
+		if (bandera){ //bandera==true
+			alert("No se permite numeros");
+			$("#apellido").val("");
+		}
+
+	}
+
+	function validarSOLOletras(e){
+		let tecla = (document.all) ? e.keyCode : e.which; // 2
+		if (tecla==8) return true; // 3
+		let patron =/[A-Za-z\s]/; // 4
+		let te = String.fromCharCode(tecla); // 5
+		return patron.test(te); // 6
+	}
+
+
+	function validarSOLOnumeros(e){
+		let tecla = (document.all) ? e.keyCode : e.which; // 2
+		if (tecla==8) return true; // 3
+		let patron =/[0-9]/; // 4
+		let te = String.fromCharCode(tecla); // 5
+		return patron.test(te); // 6
+
+         //Validamos que se cumpla el rango
+
+	}
+    
+
+
+
+</script>
+
+
+</body>
+
+</html>
